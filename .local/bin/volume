@@ -13,24 +13,45 @@ function is_mute_mic(){
 }
 
 case $1 in
+    value)
+        get_volume
+    ;;
+    value_percentage)
+        echo "$(get_volume)%"
+    ;;
     up)
         pactl set-sink-volume @DEFAULT_SINK@ +5%
-        get_volume
     ;;
     down)
         pactl set-sink-volume @DEFAULT_SINK@ -5%
-        get_volume
     ;;
     mute)
         pactl set-sink-mute @DEFAULT_SINK@ toggle
         is_mute
     ;;
+    is_mute)
+        is_mute
+    ;;
+    is_mute_mic)
+        is_mute_mic
+    ;;
     mute_mic)
         pactl set-source-mute @DEFAULT_SOURCE@ toggle
         is_mute_mic
     ;;
-    *)
-        get_volume
-    ;;
+	*)
+		echo "usage: volume [OPTIONS]
+		
+OPTIONS
+    value
+    value_percentage
+    up
+    down
+    mute
+    mute_mic
+    is_mute
+    is_mute_mic
+"
+	;;
 esac
 

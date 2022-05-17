@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+function get_brightness(){
+    light -G
+}
+
+case $1 in
+    up)
+        light -A 5%
+    ;;
+    down)
+        light -U 5%
+    ;;
+    value)
+        get_brightness
+    ;;
+    value_percentage)
+        get_brightness | awk '{printf "%s%\n",($0-int($0)<0.499)?int($0):int($0)+1}'
+    ;;
+    *)
+        echo "usage: brightness [OPTIONS]
+		
+OPTIONS
+   up
+   down
+   value
+   value_percentage
+"
+    ;;
+esac
+

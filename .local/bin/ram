@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+case $1 in
+    used_value)
+        echo $(free -mh | grep Mem | awk '{print $3}')
+    ;;
+    used_percentage)
+        printf "%.0f%%\n" $(free -m | grep Mem | awk '{print ($3/$2)*100}')
+    ;;
+    free_percentage)
+        printf "%.0f%%\n" $(free -m | grep Mem | awk '{print ($4/$2)*100}')
+    ;;
+    free_value)
+        echo $(free -mh | grep Mem | awk '{print $4}')
+    ;;
+	*)
+		echo "usage: ram [OPTIONS]
+		
+OPTIONS
+    used
+    used_percentage
+    free
+    free_percentage
+"
+	;;
+esac

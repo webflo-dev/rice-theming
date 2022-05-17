@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+case $1 in
+    value)
+        grep -o "^[^ ]*" /proc/loadavg
+    ;;
+    value_percentage)
+        value=$(grep -o "^[^ ]*" /proc/loadavg)
+        echo "$value%"
+    ;;
+    *)
+        echo "usage: cpu [OPTIONS]
+		
+OPTIONS
+   value
+   value_percentage
+"
+    ;;
+esac

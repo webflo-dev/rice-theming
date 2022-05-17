@@ -35,8 +35,21 @@ case $1 in
 			echo " "
 		fi
 	;;
+	info)
+		nmcli --fields type,name connection show --active | awk 'FNR == 2 {print}'
+	;;
 	*)
-		nmcli --fields type,name connection show --active
+		echo "usage: network [OPTIONS]
+		
+OPTIONS
+   type			get the type of network
+   name			get the SSID of network
+   device		get the name of the interface
+   is_wired		return yes or no
+   is_wireless		return yes or no
+   icon			get icon depending of the connection type
+   info			get basic info
+"
 	;;
 esac
 

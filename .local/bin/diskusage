@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+
+case $1 in
+    used)
+        used=$(df -hl | awk '/^\/dev\/sd[ab]|nvme0n1/ { sum+=$5 } END { print sum }')
+        echo "$used%"
+    ;;
+    *)
+        echo "usage: diskusage [OPTIONS]
+		
+OPTIONS
+    used
+"
+    ;;
+esac
