@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+
+function get_volume(){
+    pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
+}
+
+function is_mute(){
+    pactl get-sink-mute @DEFAULT_SINK@ | cut -d: -f2 | tr -d ' '
+}
+
+function is_mute_mic(){
+    pactl get-source-mute @DEFAULT_SOURCE@ | cut -d: -f2 | tr -d ' '
+}
+
+case $1 in
+    up)
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        get_volume
+    ;;
+    down)
+        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        get_volume
+    ;;
+    mute)
+        pactl set-sink-mute @DEFAULT_SINK@ toggle
+        is_mute
+    ;;
+    mute_mic)
+        pactl set-source-mute @DEFAULT_SOURCE@ toggle
+        is_mute_mic
+    ;;
+    *)
+        get_volume
+    ;;
+esac
+
