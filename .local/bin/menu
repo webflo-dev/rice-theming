@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+case $1 in
+    launcher)
+        rofi -modi "drun,window" -show drun
+    ;;
+    power)
+        rofi -modi "power:~/.local/bin/rofi-powermenu" -show power
+    ;;
+    modi)
+        rofi -modi "$2" -show ${2%%,*}
+    ;;
+    *)
+        echo "usage: menu [OPTIONS]
+		
+OPTIONS
+   launcher
+   power
+   modi
+"
+    ;;
+esac

@@ -1,0 +1,16 @@
+set $term               alacritty
+set $term_float         alacritty --class floating_shell 
+set $menu               ~/.local/bin/menu
+set $volume             ~/.local/bin/volume
+set $brightness         ~/.local/bin/brightness
+set $lock               loginctl lock-session ${XDG_SESSION_ID}
+
+include ~/.config/i3/theme.conf
+include ~/.config/i3/keybindings.conf
+include ~/.config/i3/modes.conf
+include ~/.config/i3/apps.conf
+
+bar {
+        status_command i3status
+        position top
+}
