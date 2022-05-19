@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+is_running(){
+	pgrep -x "picom"
+}
+
+start(){
+	picom -b
+}
+
+kill_picom(){
+	kill $1
+	pwait $1
+	return 0
+}
+
+case $1 in
+	start)
+		start
+	;;
+	stop)
+		[ -n "${pid=$(is_running)}" ] && kill_picom $pid
+		exit 0
+	;;
+	toggle)
+		[ -n "${pid=$(is_running)}" ] && kill_picom $pid || start
+		exit 0
+	;;
+  	*)
+		echo "usage: picomctl [OPTIONS]
+		
+OPTIONS
+   start
+   stop
+   toggle
+"
+    ;;
+esac
+
+
