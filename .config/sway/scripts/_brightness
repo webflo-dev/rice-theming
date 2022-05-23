@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+case $1 in
+  up)
+    brightnessctl -q -c backlight set +5%
+  ;;
+  down)
+    brightnessctl -q -c backlight set 5%-
+  ;;
+esac
+
+current=$(brightnessctl -c backlight get)
+max=$(brightnessctl -c backlight max)
+echo $(( $current * 100 / $max ))

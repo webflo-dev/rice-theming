@@ -5,6 +5,8 @@ set $volume             ~/.local/bin/volume
 set $brightness         ~/.local/bin/brightness
 set $lock               loginctl lock-session ${XDG_SESSION_ID}
 
+focus_follows_mouse     no
+
 include ~/.config/i3/theme.conf
 include ~/.config/i3/keybindings.conf
 include ~/.config/i3/modes.conf
@@ -14,3 +16,8 @@ bar {
         status_command i3status
         position top
 }
+
+# top bar
+# left => workspace / sysinfo
+# middle => music info ?
+# right => network / volume / bluetooth / date / time

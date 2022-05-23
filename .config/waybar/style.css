@@ -1,0 +1,226 @@
+@define-color bg0       #0b1726;
+@define-color bg1       #12212f;
+@define-color black     #192e40;
+@define-color red       #c20f47;
+@define-color green     #25a37e;
+@define-color yellow    #e9986d;
+@define-color blue      #5d92bf;
+@define-color magenta   #6768bf;
+@define-color cyan      #54bfb8;
+@define-color white     #fff6e6;
+
+@define-color warning   @warning_color;
+@define-color critical  @red;
+
+@keyframes blink-warning {
+  70% {
+    color: @bg1;
+  }
+
+  to {
+    color: @bg1;
+    background-color: @warning;
+  }
+}
+
+@keyframes blink-critical {
+  70% {
+    color: @bg1;
+  }
+
+  to {
+    color: @bg1;
+    background-color: @critical;
+  }
+}
+
+* {
+  border: none;
+  border: none;
+  min-height: 0;
+  padding: 0;
+}
+
+#waybar {
+  background: transparent;
+  /* background: #FFF; */
+  font-family: "DejaVu Sans, DejaVuSansMono Nerd Font";
+  /* font-family: "DejaVu Sans, RobotoMono Nerd Font"; */
+  font-size: 14px;
+  /* font-weight: bold; */
+}
+
+/* Each module */
+#backlight,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#custom-clipboard,
+#custom-github,
+#custom-media,
+#custom-pacman,
+#custom-playerctl,
+#custom-scratchpad,
+#custom-scratchpad-indicator,
+#custom-sunset,
+#custom-weather,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#network,
+#pulseaudio,
+#language #window,
+#temperature,
+#tray,
+#wlr-taskbar {
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  margin: 3px 5px;
+  color: @white;
+  background-color: @bg1;
+}
+
+.modules-left,
+.modules-right {
+}
+
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+#battery {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.warning {
+  color: @warning;
+}
+
+#battery.critical {
+  color: @critical;
+}
+
+#battery.warning.discharging {
+  animation-name: blink-warning;
+  animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#bluetooth {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+#bluetooth.disabled {
+  color: @red;
+}
+
+#custom-media {
+  background-color: #66cc99;
+  color: #2a5c45;
+  min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+  background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+  background-color: #ffa000;
+}
+
+#custom-scratchpad-indicator {
+  color: @yellow;
+}
+
+#clock {
+  font-weight: bold;
+  color: @bg1;
+  background-color: @green;
+}
+#clock.date {
+  margin-right: 0px;
+}
+#clock.time {
+  margin-left: 0px;
+}
+
+#battery {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#cpu.warning {
+  color: @warning;
+}
+
+#cpu.critical {
+  color: @critical;
+}
+
+#memory {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#memory.warning {
+  color: @warning;
+}
+
+#memory.critical {
+  color: @critical;
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#mode {
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  margin: 3px 5px;
+  background: @blue;
+}
+
+#network {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+#network.disconnected {
+  color: @red;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#temperature.critical {
+  color: @red;
+}
+
+#workspaces {
+  background-color: @bg0;
+}
+
+#workspaces button {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: @bg0;
+  color: @white;
+  border-radius: 0;
+}
+
+#workspaces button.focused {
+  color: @bg1;
+  background-color: @yellow;
+}
+
+#workspaces button.urgent {
+  color: @white;
+  background-color: @red;
+}

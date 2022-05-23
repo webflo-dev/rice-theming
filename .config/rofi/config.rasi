@@ -1,0 +1,283 @@
+configuration {
+/*	modi: "combi,drun,run"; */
+/*	font: "RobotoMono Nerd Font 14"; */
+    font: "DejaVu Sans, DejaVuSansMono Nerd Font 14";
+/*	location: 0;*/
+/*	yoffset: 0;*/
+/*	xoffset: 0;*/
+/*	fixed-num-lines: true;*/
+    show-icons: true;
+    terminal: "alacritty";
+/*	ssh-client: "ssh";*/
+/*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
+/*	run-command: "{cmd}";*/
+/*	run-list-command: "";*/
+/*	run-shell-command: "{terminal} -e {cmd}";*/
+/*	window-command: "wmctrl -i -R {window}";*/
+/*	window-match-fields: "all";*/
+/*	icon-theme: ;*/
+/*	drun-match-fields: "name,generic,exec,categories,keywords";*/
+/*	drun-categories: ;*/
+/*	drun-show-actions: false;*/
+/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+/*	drun-url-launcher: "xdg-open";*/
+/*	disable-history: true; */
+/*	ignored-prefixes: "";*/
+/*	sort: false;*/
+/*	sorting-method: "normal";*/
+/*	case-sensitive: false;*/
+/*	cycle: false; */
+/*	sidebar-mode: false;*/
+/*	hover-select: false;*/
+/*	eh: 1;*/
+/*	auto-select: false;*/
+/*	parse-hosts: false;*/
+/*	parse-known-hosts: true;*/
+/*	combi-modi: "window,run";*/
+/*	matching: "normal";*/
+/*	tokenize: true;*/
+/*	m: "-5"; */
+/*	filter: ;*/
+/*	dpi: -1;*/
+/*	threads: 0;*/
+/*	scroll-method: 1; */
+/*	window-format: "{w}    {c}   {t}";*/
+/*	click-to-exit: true;*/
+/*	theme: ;*/
+/*	max-history-size: 25;*/
+/*	combi-hide-mode-prefix: false;*/
+/*	matching-negate-char: '-' /* unsupported */;*/
+/*	cache-dir: ".cache/rofi"; */
+/*	window-thumbnail: false;*/
+/*	drun-use-desktop-cache: false;*/
+/*	drun-reload-desktop-cache: false;*/
+/*	normalize-match: false;*/
+/*	steal-focus: false;*/
+/*	application-fallback-icon: ;*/
+/*	pid: "/run/user/1000/rofi.pid";*/
+	display-run: "";
+	display-ssh: "歷";
+	display-drun: "";
+/*	display-combi: ;*/
+/*	display-keys: ;*/
+/*	display-filebrowser: ;*/
+/*	kb-primary-paste: "Control+V,Shift+Insert";*/
+/*	kb-secondary-paste: "Control+v,Insert";*/
+/*	kb-clear-line: "Control+w";*/
+/*	kb-move-front: "Control+a";*/
+/*	kb-move-end: "Control+e";*/
+/*	kb-move-word-back: "Alt+b,Control+Left";*/
+/*	kb-move-word-forward: "Alt+f,Control+Right";*/
+/*	kb-move-char-back: "Left,Control+b";*/
+/*	kb-move-char-forward: "Right,Control+f";*/
+/*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
+/*	kb-remove-word-forward: "Control+Alt+d";*/
+/*	kb-remove-char-forward: "Delete,Control+d";*/
+/*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
+/*	kb-remove-to-eol: "Control+k";*/
+/*	kb-remove-to-sol: "Control+u";*/
+/*	kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";*/
+/*	kb-accept-custom: "Control+Return";*/
+/*	kb-accept-custom-alt: "Control+Shift+Return";*/
+/*	kb-accept-alt: "Shift+Return";*/
+/*	kb-delete-entry: "Shift+Delete";*/
+/*	kb-mode-next: "Shift+Right,Control+Tab";*/
+/*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
+/*	kb-mode-complete: "Control+l";*/
+/*	kb-row-left: "Control+Page_Up";*/
+/*	kb-row-right: "Control+Page_Down";*/
+/*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
+/*	kb-row-down: "Down,Control+n";*/
+/*	kb-row-tab: "Tab";*/
+/*	kb-page-prev: "Page_Up";*/
+/*	kb-page-next: "Page_Down";*/
+/*	kb-row-first: "Home,KP_Home";*/
+/*	kb-row-last: "End,KP_End";*/
+/*	kb-row-select: "Control+space";*/
+/*	kb-screenshot: "Alt+S";*/
+/*	kb-ellipsize: "Alt+period";*/
+/*	kb-toggle-case-sensitivity: "grave,dead_grave";*/
+/*	kb-toggle-sort: "Alt+grave";*/
+/*	kb-cancel: "Escape,Control+g,Control+bracketleft";*/
+/*	kb-custom-1: "Alt+1";*/
+/*	kb-custom-2: "Alt+2";*/
+/*	kb-custom-3: "Alt+3";*/
+/*	kb-custom-4: "Alt+4";*/
+/*	kb-custom-5: "Alt+5";*/
+/*	kb-custom-6: "Alt+6";*/
+/*	kb-custom-7: "Alt+7";*/
+/*	kb-custom-8: "Alt+8";*/
+/*	kb-custom-9: "Alt+9";*/
+/*	kb-custom-10: "Alt+0";*/
+/*	kb-custom-11: "Alt+exclam";*/
+/*	kb-custom-12: "Alt+at";*/
+/*	kb-custom-13: "Alt+numbersign";*/
+/*	kb-custom-14: "Alt+dollar";*/
+/*	kb-custom-15: "Alt+percent";*/
+/*	kb-custom-16: "Alt+dead_circumflex";*/
+/*	kb-custom-17: "Alt+ampersand";*/
+/*	kb-custom-18: "Alt+asterisk";*/
+/*	kb-custom-19: "Alt+parenleft";*/
+/*	kb-select-1: "Super+1";*/
+/*	kb-select-2: "Super+2";*/
+/*	kb-select-3: "Super+3";*/
+/*	kb-select-4: "Super+4";*/
+/*	kb-select-5: "Super+5";*/
+/*	kb-select-6: "Super+6";*/
+/*	kb-select-7: "Super+7";*/
+/*	kb-select-8: "Super+8";*/
+/*	kb-select-9: "Super+9";*/
+/*	kb-select-10: "Super+0";*/
+/*	ml-row-left: "ScrollLeft";*/
+/*	ml-row-right: "ScrollRight";*/
+/*	ml-row-up: "ScrollUp";*/
+/*	ml-row-down: "ScrollDown";*/
+/*	me-select-entry: "MousePrimary";*/
+/*	me-accept-entry: "MouseDPrimary";*/
+/*	me-accept-custom: "Control+MouseDPrimary";*/
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+
+* {
+    black0: #192e40;
+    black1: #284259;
+    red: #c20f47;
+    green: #25a37e;
+    yellow: #e9986d;
+    blue: #5d92bf;
+    magenta: #6768bf;
+    cyan: #5accc5;
+    white0: #fff6e6;
+    white1: #fffef8;
+    grey0: #484f59;
+    grey1: #c3c0b8;
+
+    background: #12212f;
+    alt-background: var(black0);
+    selected: var(yellow);
+    active: var(green);
+    foreground: var(white0);
+    alt-foreground: #0b1726;
+    urgent: var(red);
+}
+
+window {
+    border: 0px;
+    padding: 8px;
+    width: 600px;
+}
+
+mainbox {
+    children: [ inputbar, message, listview, mode-switcher ];
+}
+
+inputbar {
+    padding: 6px;
+    background-color: var(alt-background);
+    text-color: var(foreground);
+    children: [ prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows ];
+}
+
+prompt {
+    padding: 0px 4px 0px 2px;
+    text-color: var(foreground);
+}
+
+textbox-prompt-colon {
+	str: "";
+}
+
+entry {
+    placeholder-color: var(grey0);
+    text-color: var(foreground);
+}
+
+num-rows, num-filtered-rows, textbox-num-sep {
+    text-color: var(yellow);
+}
+
+message {
+    margin: 4px 0px 0px 0px;
+    padding: 4px;
+    border: 1px 0px;
+    border-color: var(black0);
+}
+
+listview {
+    border: 4px 0px;
+    border-color: var(background);
+    lines: 10;
+}
+
+scrollbar {
+    padding: 0px 0px 0px 4px;
+    handle-color: var(foreground);
+    handle-width: 8px;
+}
+
+element {
+    padding: 3px;
+}
+
+element normal.normal {
+	background-color: var(background);
+	text-color: var(foreground);
+}
+
+element normal.urgent {
+	background-color: var(background);
+	text-color: var(urgent);
+}
+
+element normal.active {
+	background-color: var(background);
+	text-color: var(active);
+}
+
+element selected.normal {
+	background-color: var(selected);
+	text-color: var(alt-foreground);
+}
+
+element selected.urgent {
+	background-color: var(urgent);
+	text-color: var(alt-foreground);
+}
+
+element selected.active {
+	background-color: var(active);
+	text-color: var(alt-foreground);
+}
+
+element alternate.normal {
+	background-color: var(background);
+	text-color: var(foreground);
+}
+
+element alternate.urgent {
+	background-color: var(background);
+	text-color: var(urgent);
+}
+
+element alternate.active {
+	background-color: var(background);
+	text-color: var(active);
+}
+
+button {
+    text-color: var(foreground);
+    padding: 3px;
+}
+
+button selected {
+    background-color: var(blue);
+    text-color: var(alt-foreground);
+}

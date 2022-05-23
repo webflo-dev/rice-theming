@@ -1,0 +1,46 @@
+show-failed-attempts
+indicator-caps-lock
+ignore-empty-password
+
+image=~/.config/sway/swaylock.png
+# font=
+# font-size=
+
+# fade-in=0.2
+
+effect-blur=7x5
+# effect-vignette=0.5:0.5
+
+indicator-radius=100 # 120
+indicator-thickness=20 # 60
+
+inside-color=5d92bf00
+inside-clear-color=e9986d00
+inside-caps-lock-color=5d92bf00
+inside-ver-color=fff6e600
+inside-wrong-color=c20f4700
+
+ring-color=0b1726D9
+ring-clear-color=0b1726D9
+ring-caps-lock-color=0b1726D9
+ring-ver-color=0b1726D9
+ring-wrong-color=0b1726D9
+
+line-color=5d92bf00
+line-clear-color=e9986dFF
+line-caps-lock-color=25a37eFF
+line-ver-color=fff6e6FF
+line-wrong-color=c20f47FF
+
+text-color=5d92bf00
+text-clear-color=e9986d00
+text-caps-lock-color=5d92bf00
+text-ver-color=fff6e600
+text-wrong-color=c20f4700
+
+key-hl-color=25a37eFF
+bs-hl-color=c20f47FF
+caps-lock-key-hl-color=e9986dFF
+caps-lock-bs-hl-color=c20f47FF
+separator-color=192e4000
+
