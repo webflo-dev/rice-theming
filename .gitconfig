@@ -4,6 +4,8 @@
    path = ~/.gitconfig-pro
 [includeIf "gitdir:~/dev/webflo/"]
    path = ~/.gitconfig-github
+[includeIf "gitdir:~/dev/florent/"]
+   path = ~/.gitconfig-github
 
 [core]
    # Speed up commands involving untracked files such as `git status`.
