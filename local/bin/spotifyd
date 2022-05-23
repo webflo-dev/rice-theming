@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+case $1 in
+    notify)
+        song=$(playerctl --player=spotifyd metadata --format "Title: {{ title }}\nArtist: {{ artist }}\nAlbum: {{ album }}")
+        notify-send "Spotify" "$song" -t 3000
+    ;;
+    username)
+        username=$(secret-tool search -a service "spotifyd" application "rust-keyring" 2>&1 | grep "username" | cut -d'=' -f2 | tr -d ' ')
+        echo $username
+    ;;
+esac

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Pulsemixer
+Terminal=true
+#Comment=Vim-like file manager
+Icon=applications-system
+Exec=pulsemixer
+Categories=Accessories;
+Encoding=UTF-8
+Keywords=Utilities;Audio;
+
+
