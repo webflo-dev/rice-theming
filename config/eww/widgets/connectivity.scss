@@ -1,0 +1,15 @@
+
+.network {
+    .wireless.disconnected {
+        color: $color1;
+    }
+}
+.bluetooth {
+    color: $color1;
+    .powered {
+        color: gray;
+        &.connected {
+            color: $foreground;
+        }
+    }
+}

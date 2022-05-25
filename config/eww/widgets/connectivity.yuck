@@ -5,31 +5,31 @@
 
 
 (defwidget connectivity []
-	(box :class "dock-box" :space-evenly false :spacing 20
-		(network)
-		(bluetooth)
-	)
+  (box :class "dock-box" :space-evenly false :spacing 20
+    (network)
+    (bluetooth)
+  )
 )
 
 (defwidget network []
-	(eventbox :cursor "pointer"	:onclick "alacritty --class floating_shell -e nmtui &"
-	(box :spacing 10  :space-evenly false :class "network"
-			(label :class "icon-regular wired ${NETWORK_WIRED != "" ? "connected" : "disconnected"}" 
-					:text "\\uf6ff"
-					:tooltip {NETWORK_WIRED != "" ? NETWORK_WIRED.name : "disconnected"})
-			(label :class "icon-regular wireless ${NETWORK_WIRELESS != "" ? "connected" : "disconnected"}" 
-					:text "\\uf1eb"
-					:tooltip {NETWORK_WIRELESS != "" ? NETWORK_WIRELESS.name : "disconnected"})
-		)
-	)
+  (eventbox :cursor "pointer"	:onclick "alacritty --class floating_shell -e nmtui &"
+    (box :spacing 10  :space-evenly false :class "network"
+      (label :class "icon-regular wired ${NETWORK_WIRED != "" ? "connected" : "disconnected"}"
+        :text "\\uf6ff"
+      :tooltip {NETWORK_WIRED != "" ? NETWORK_WIRED.name : "disconnected"})
+      (label :class "icon-regular wireless ${NETWORK_WIRELESS != "" ? "connected" : "disconnected"}"
+        :text "\\uf1eb"
+      :tooltip {NETWORK_WIRELESS != "" ? NETWORK_WIRELESS.name : "disconnected"})
+    )
+  )
 )
 
 (defwidget bluetooth []
-	(eventbox :cursor "pointer"	:onclick "blueman-manager &"
-		(box :class "bluetooth"
-			(label :class "icon-regular bluetooth ${BLUETOOTH_POWERED == "yes" ? "powered" : "not-powered"} ${BLUETOOTH_DEVICES != "" ? "connected": ""}" 
-			:text "\\uf293"
-			:tooltip {BLUETOOTH_DEVICES != "" ? BLUETOOTH_DEVICES : "No device connected"})
-		)
-	)
+  (eventbox :cursor "pointer"	:onclick "blueman-manager &"
+    (box :class "bluetooth"
+      (label :class "icon-regular bluetooth ${BLUETOOTH_POWERED == "yes" ? "powered" : "not-powered"} ${BLUETOOTH_DEVICES != "" ? "connected": ""}"
+        :text "\\uf293"
+      :tooltip {BLUETOOTH_DEVICES != "" ? BLUETOOTH_DEVICES : "No device connected"})
+    )
+  )
 )

@@ -11,10 +11,11 @@ include ~/.config/i3/theme.conf
 include ~/.config/i3/keybindings.conf
 include ~/.config/i3/modes.conf
 include ~/.config/i3/apps.conf
+include ~/.config/i3/rules.conf
 
 bar {
         status_command i3status
-        position top
+        position bottom
 }
 
 # top bar

@@ -1,0 +1,14 @@
+(defwidget audio []
+  (eventbox :cursor "pointer" :onclick "alacritty --class floating_shell -e pulsemixer &"
+    (box
+      :orientation "h"
+      :space-evenly false
+      :spacing 5
+      :class "dock-box"
+      (label :class "icon-regular" :text "\\uf6a8")
+      (label :text "${current-volume}%")
+    )
+  )
+)
+
+(defpoll current-volume :interval "1s" "/home/florent/.local/bin/volume value")

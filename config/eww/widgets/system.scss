@@ -1,0 +1,56 @@
+
+.mem_module {
+    color: $foreground;
+    background-color: #0f0f17;
+    border-radius: 16px;
+    margin: 0px 10px 0px 3px;
+}
+
+.membar {
+    color: #e0b089;
+    background-color: #38384d;
+    border-radius: 10px;
+}
+
+.iconmem {
+    color: #e0b089;
+    // font-size: 0.7rem;
+    margin: 0.7rem;
+}
+
+
+.cpu_module {
+    background-color: #0f0f17;
+    border-radius: 16px;
+    margin: 0px 10px 0px 3px;
+}
+
+.cpubar {
+    color: $color5;
+    background-color: #38384d;
+    border-radius: 10px;
+}
+
+.iconcpu {
+    color: $color5;
+    // font-size: 0.7rem;
+    margin: 0.7rem;
+}
+
+.temperature_module {
+    background-color: #0f0f17;
+    border-radius: 16px;
+    margin: 0px 10px 0px 3px;
+}
+
+.temperaturebar {
+    color: $color2;
+    background-color: #38384d;
+    border-radius: 10px;
+}
+
+.icontemperature {
+    color: $color2;
+    // font-size: 0.7rem;
+    margin: 0.7rem;
+}
