@@ -1,0 +1,29 @@
+.spotify {
+    min-width: 200px;
+}
+
+.album-art {
+    background-size: cover;
+    background-position: center;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.song-details {
+    margin-right: 1em;
+}
+
+.song {
+    margin-top: 7px;
+    font-weight: bold;
+}
+
+.artist {
+    font-size: 11px;
+}
+
+.media-controls {
+    min-width: 5em;
+}

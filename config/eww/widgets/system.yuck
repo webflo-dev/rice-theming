@@ -1,0 +1,57 @@
+(defwidget mem []
+	(box :class "mem_module" :vexpand "false" :hexpand "false" 
+		(circular-progress :value {EWW_RAM.used_mem_perc}
+			:class "membar"
+			:thickness 4
+			:start-at 75
+			(label 
+				:class "icon-regular iconmem"
+				:tooltip "Using ${round(EWW_RAM.used_mem_perc, 0)}% RAM
+Available: ${round(EWW_RAM.available_mem / 1000000, 0)} Go
+Used: ${round(EWW_RAM.used_mem / 1000000, 0)} Go"
+				:text "\\uf538"
+			)
+		)
+	)
+)
+
+(defwidget cpu []
+	(box :class "cpu_module" :vexpand "false" :hexpand "false" 
+		(circular-progress :value {EWW_CPU.cores[0].usage}
+			:class "cpubar"
+			:thickness 4
+			:start-at 75
+			(label 
+				:class "icon-regular iconcpu"
+				:tooltip "${round(EWW_CPU.avg, 0)}%"
+				:text "\\uf2db"
+			)
+		)
+	)
+)
+
+(defwidget temperature []
+	(box :class "temperature_module" :vexpand "false" :hexpand "false" 
+		(circular-progress :value {EWW_TEMPS.CPU}
+			:class "temperaturebar"
+			:thickness 4
+			:start-at 75
+			(label 
+				:class "icon-regular icontemperature"
+				:tooltip "${EWW_TEMPS.CPU}°C"
+				:text "\\uf76b"
+			)
+		)
+	)
+)
+
+(defwidget system []
+	(box :spacing 0
+		:orientation "h"
+		:space-evenly false
+		:class "dock-box"
+		(mem)
+		(cpu)
+		(temperature)
+	)
+)

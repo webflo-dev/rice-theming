@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+is_powered() {
+    bluetoothctl show | grep Powered | awk '{print $2}'
+}
+
+device_connected() {
+    device_info=$(bluetoothctl info "$1")
+    if echo "$device_info" | grep -q "Connected: yes"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+case $1 in
+    powered)
+        is_powered
+    ;;
+    toggle)
+        if [ "$(is_powered)" == "no"]; then
+            bluetoothctl power on
+        else
+            bluetoothctl power off
+        fi
+    ;;
+    devices)
+        if [ "$(is_powered)" == "yes" ]; then
+            mapfile -t paired_devices < <(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
+            devices=()
+            for device in "${paired_devices[@]}"; do
+                if device_connected $device; then
+                    device_alias=$(bluetoothctl info $device | grep "Alias" | cut -d ' ' -f 2-)
+                    devices+=("$device_alias")
+                fi
+            done
+            [ "${#devices}" -ne "0" ] && printf '%s\n' "${devices[@]}" || echo ""
+        fi
+    ;;
+    *)
+        echo "usage: bluetooth [OPTIONS]
+		
+OPTIONS
+   powered      ""yes"" or ""no""
+   toggle
+   devices
+"
+    ;;
+esac;
+

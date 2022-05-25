@@ -1,0 +1,49 @@
+(defwindow bar
+    :monitor 0
+    :geometry (geometry :x "0px"
+                        :y "10px"
+                        :width "100%"
+                        :height "50px"
+                        :anchor "top left")
+    :stacking "fg"
+    :windowtype "dock"
+    :wm-ignore false
+    (topbar)
+)
+
+
+(include "widgets/datetime.yuck")
+(include "widgets/system.yuck")
+(include "widgets/connectivity.yuck")
+(include "widgets/spotify.yuck")
+
+
+(defwidget topbar_left_module []
+    (box :class "left_module" :orientation "h" :space-evenly false 
+        (label :class "dock-box" :text "The quick brown fox jumps over the lazy dog")
+    )
+)
+
+(defwidget topbar_center_module []
+    (box :class "center_module " :orientation "h" :space-evenly false 
+        ; (spotify)
+    )
+)
+
+
+
+(defwidget topbar_right_module []
+    (box :class "right_module" :orientation "h" :space-evenly false  :halign "end"
+        (connectivity)
+        (system)
+        (datetimeWidget)
+    )
+)
+
+(defwidget topbar []
+    (centerbox :class "topbar" :orientation "h" 
+        (topbar_left_module)
+        (topbar_center_module)
+        (topbar_right_module)
+    )
+)

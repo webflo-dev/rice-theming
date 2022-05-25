@@ -1,0 +1,115 @@
+@import "colors.scss";
+
+* {
+    all: unset;
+    font-family: "Cartograph CF'";
+  }
+
+  .icon-regular {
+    font-family: 'Font Awesome 6 Pro';
+    font-weight: 400;
+  }
+  .icon-light {
+    font-family: 'Font Awesome 6 Pro';
+    font-weight: 300;
+  }
+  .icon-thin {
+    font-family: 'Font Awesome 6 Pro';
+    font-weight: 100;
+  }
+  .icon-solid {
+    font-family: 'Font Awesome 6 Pro';
+    font-weight: 900;
+  }
+
+.topbar {
+    .left_module {}
+    .center_module {}
+    .right_module {}
+}
+
+
+.dock-box {
+    color: $foreground;
+    background: $background;
+    border-radius: 8px;
+    padding: 7px 10px;
+    border: 1px $color7 solid;
+}
+
+@import "widgets/datetime.scss";
+@import "widgets/system.scss";
+@import "widgets/spotify.scss";
+
+.network {
+    .wireless.disconnected {
+        color: $color1;
+    }
+}
+.bluetooth {
+    color: $color1;
+    .powered {
+        color: gray;
+        &.connected {
+            color: $foreground;
+        }
+    }
+}
+
+
+
+.mem_module {
+    color: $foreground;
+    background-color: #0f0f17;
+    border-radius: 16px;
+    margin: 0px 10px 0px 3px;
+}
+
+.membar {
+    color: #e0b089;
+    background-color: #38384d;
+    border-radius: 10px;
+}
+
+.iconmem {
+    color: #e0b089;
+    // font-size: 0.7rem;
+    margin: 0.7rem;
+}
+
+
+.cpu_module {
+    background-color: #0f0f17;
+    border-radius: 16px;
+    margin: 0px 10px 0px 3px;
+}
+
+.cpubar {
+    color: $color5;
+    background-color: #38384d;
+    border-radius: 10px;
+}
+
+.iconcpu {
+    color: $color5;
+    // font-size: 0.7rem;
+    margin: 0.7rem;
+}
+
+.temperature_module {
+    background-color: #0f0f17;
+    border-radius: 16px;
+    margin: 0px 10px 0px 3px;
+}
+
+.temperaturebar {
+    color: $color2;
+    background-color: #38384d;
+    border-radius: 10px;
+}
+
+.icontemperature {
+    color: $color2;
+    // font-size: 0.7rem;
+    margin: 0.7rem;
+}

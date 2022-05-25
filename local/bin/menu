@@ -7,6 +7,9 @@ case $1 in
     power)
         rofi -modi "power:~/.local/bin/rofi-powermenu" -show power
     ;;
+    bluetooth)
+        rofi -modi "bluetooth:~/.local/bin/rofi-bluetooth" -show bluetooth
+    ;;
     modi)
         rofi -modi "$2" -show ${2%%,*}
     ;;
@@ -16,6 +19,7 @@ case $1 in
 OPTIONS
    launcher
    power
+   bluetooth
    modi
 "
     ;;

@@ -1,103 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S zx --quiet --experimental
 
-function is_wired(){
-	get_connection_type "ethernet"
+const type = process.argv[5]; // node + zx + (zx args) + exec name
+
+const nmcli = JSON.parse(await $`nmcli --fields name,type,device connection show --active | jc --nmcli`);
+if (type) {
+    const info = nmcli.find(data => data.type === type);
+    info ? echo(JSON.stringify(info)) : echo("");
+} else {
+    echo(nmcli)
 }
-
-function is_wireless() {
-	get_connection_type "wifi"
-}
-
-function get_connection_type(){
-	if [ "$(nmcli connection show --active | grep -oh "\w*$1\w*")" == "$1" ]; then
-		echo "yes"
-	else
-		echo "no"
-	fi
-}
-
-case $1 in
-	type|name|device)
-		nmcli -t --fields $1 connection show --active
-	;;
-	is_wireless)
-		is_wireless
-	;;
-	is_wired)
-		is_wired
-	;;
-	icon)
-		if [ $(is_wired) == "yes" ]; then
-			echo " "
-		elif [ $(is_wireless) == "yes" ]; then
-			echo "  "
-		else
-			echo " "
-		fi
-	;;
-	info)
-		nmcli --fields type,name connection show --active | awk 'FNR == 2 {print}'
-	;;
-	*)
-		echo "usage: network [OPTIONS]
-		
-OPTIONS
-   type			get the type of network
-   name			get the SSID of network
-   device		get the name of the interface
-   is_wired		return yes or no
-   is_wireless		return yes or no
-   icon			get icon depending of the connection type
-   info			get basic info
-"
-	;;
-esac
-
-
-
-
-
-
-
-
-
-
-
-
-# Shows the connections names
-# nmcli connection show --active | grep 'ethernet' | awk '{ print $1 }' FS='  '
-# nmcli connection show --active | grep 'wifi' | awk '{ print $1 }' FS='  '
-
-# Show ethernet interface name
-# nmcli connection show --active | grep 'ethernet' | awk '{ print $6 }' FS=' '
-
-# Show wifi interface name
-# nmcli connection show --active | grep 'wifi' | awk '{ print $4 }' FS=' '
-
-# function ShowInfo {
-# 	if [ "$(nmcli connection show --active | grep -oh "\w*ethernet\w*")" == "ethernet" ]; then
-# 		connection="$(nmcli connection show --active | grep 'ethernet' | awk '{ print $6 }' FS=' '): $(nmcli connection show --active | grep 'ethernet' | awk '{ print $1 }' FS='  ') - $(nmcli -t -f IP4.ADDRESS dev show $(nmcli connection show --active | grep 'ethernet' | awk '{ print $6 }' FS=' ') | awk '{print $2}' FS='[:/]')"
-# 	elif [ "$(nmcli connection show --active | grep -oh "\w*wifi\w*")" == "wifi" ]; then
-# 		connection="$(nmcli connection show --active | grep 'wifi' | awk '{ print $4 }' FS=' '): $(nmcli connection show --active | grep 'wifi' | awk '{ print $1 }' FS='  ') - $(nmcli -t -f IP4.ADDRESS dev show $(nmcli connection show --active | grep 'wifi' | awk '{ print $4 }' FS=' ') | awk '{print $2}' FS='[:/]')"
-# 	else
-# 		connection="No active connection."
-# 	fi
-# 	dunstify -i "network-idle" "$connection" -r 123
-# }
-
-# function IconUpdate() {
-# 	if [ "$(nmcli connection show --active | grep -oh "\w*ethernet\w*")" == "ethernet" ]; then
-# 		icon=" "
-# 	elif [ "$(nmcli connection show --active | grep -oh "\w*wifi\w*")" == "wifi" ]; then
-# 		icon="  "
-# 	else
-# 		icon=" "
-# 	fi
-# 	printf "%s" "$icon"
-# }
-
-# if [ "$1" = "ShowInfo" ]; then
-# 	ShowInfo
-# else
-# 	IconUpdate	
-# fi

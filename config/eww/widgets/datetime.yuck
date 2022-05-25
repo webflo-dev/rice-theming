@@ -1,0 +1,10 @@
+(defwidget datetimeWidget []
+    (box :class "dock-box datetime" :orientation "h" :space-evenly false
+    :spacing "10"
+    (label :halign "start" :class "date" :text current_date)
+    (label :halign "start" :class "time" :text current_time)
+    )
+)
+
+(defpoll current_time :interval "1s" `date +"%H:%M"`)
+(defpoll current_date :interval "1h" `date "+%A %d %B"`)
