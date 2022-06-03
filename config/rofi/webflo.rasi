@@ -1,0 +1,137 @@
+
+* {
+    black0: #192e40;
+    black1: #284259;
+    red: #c20f47;
+    green: #25a37e;
+    yellow: #e9986d;
+    blue: #5d92bf;
+    magenta: #6768bf;
+    cyan: #5accc5;
+    white0: #fff6e6;
+    white1: #fffef8;
+    grey0: #484f59;
+    grey1: #c3c0b8;
+
+    background: #12212f;
+    alt-background: @black0;
+    selected: @yellow;
+    active: @green;
+    foreground: @white0;
+    alt-foreground: #0b1726;
+    urgent: @red;
+}
+
+window {
+    border: 0px;
+    padding: 8px;
+    width: 600px;
+    // width: 30%;
+}
+
+mainbox {
+    children: [ inputbar, message, listview, mode-switcher ];
+}
+
+inputbar {
+    padding: 6px;
+    background-color: @alt-background;
+    text-color: @foreground;
+    children: [ prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows ];
+}
+
+prompt {
+    padding: 0px 4px 0px 2px;
+    text-color: @foreground;
+}
+
+textbox-prompt-colon {
+	str: "";
+}
+
+entry {
+    placeholder-color: @grey0;
+    text-color: @foreground;
+}
+
+num-rows, num-filtered-rows, textbox-num-sep {
+    text-color: @yellow;
+}
+
+message {
+    margin: 4px 0px 0px 0px;
+    padding: 4px;
+    border: 1px 0px;
+    border-color: @black0;
+}
+
+listview {
+    border: 4px 0px;
+    border-color: @background;
+    lines: 10;
+}
+
+scrollbar {
+    padding: 0px 0px 0px 4px;
+    handle-color: @foreground;
+    handle-width: 8px;
+}
+
+element {
+    padding: 3px;
+}
+
+element normal.normal {
+	background-color: @background;
+	text-color: @foreground;
+}
+
+element normal.urgent {
+	background-color: @background;
+	text-color: @urgent;
+}
+
+element normal.active {
+	background-color: @background;
+	text-color: @active;
+}
+
+element selected.normal {
+	background-color: @selected;
+	text-color: @alt-foreground;
+}
+
+element selected.urgent {
+	background-color: @urgent;
+	text-color: @alt-foreground;
+}
+
+element selected.active {
+	background-color: @active;
+	text-color: @alt-foreground;
+}
+
+element alternate.normal {
+	background-color: @background;
+	text-color: @foreground;
+}
+
+element alternate.urgent {
+	background-color: @background;
+	text-color: @urgent;
+}
+
+element alternate.active {
+	background-color: @background;
+	text-color: @active;
+}
+
+button {
+    text-color: @foreground;
+    padding: 3px;
+}
+
+button selected {
+    background-color: @blue;
+    text-color: @alt-foreground;
+}

@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+
+is_powered(){
+    bluetoothctl show | grep Powered | awk '{print $2}'
+}
+
+get_status(){
+    systemctl is-active "bluetooth.service"
+}
+
+get_paired_devices(){
+    bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2
+}
+
+get_device_info(){
+    bluetoothctl info "$1"
+}
+
+get_device_alias(){
+    echo "$1" | grep "Alias" | cut -d ' ' -f 2-
+}
+
+is_device_connected(){
+    echo "$1" | grep -q "Connected: yes" && true || false;
+}
+
+watch(){
+    bluetoothctl | while read -r; do
+        if [ "$(get_status)" = "active" ]; then
+
+            devices_paired=$(get_paired_devices)
+            counter=0
+
+            for device in $devices_paired; do
+                device_info=$(get_device_info "$device")
+
+                if is_device_connected "$device_info"; then
+                    # device_alias=$(get_device_alias "$device_info")
+                    # if [[ $2 == "--alias" ]]; then
+                    #     if [ $counter -gt 0 ]; then
+                    #         printf ", %s" "$device_alias"
+                    #     else
+                    #         printf " %s" "$device_alias"
+                    #     fi
+                    # fi
+
+                    counter=$((counter + 1))
+                fi
+            done
+
+            if [ "$counter" -eq "0" ]; then
+                printf "%s\uf293%s\n" "%{F#757575}%{T2}" "%{T-}%{F-}"
+            else
+                printf "%s\uf293%s\n" "%{T2}" "%{T-}"
+            fi
+        else
+            printf " %s\uf293%s\n" "%{F#e53935}%{T2}" "%{T-}%{F-}"
+        fi
+    done
+}
+
+
+case $1 in
+    --status)
+        get_status
+    ;;
+    --powered)
+        is_powered
+    ;;
+    --toggle)
+        if [ "$(is_powered)" == "yes" ]; then
+            bluetoothctl power off >> /dev/null
+        else
+            bluetoothctl power on >> /dev/null
+            sleep 1
+
+            devices_paired=$(get_paired_devices)
+            echo "$devices_paired" | while read -r line; do
+                bluetoothctl connect "$line" >> /dev/null
+            done
+        fi
+    ;;
+    --devices)
+        if [ "$(is_powered)" == "yes" ]; then
+            devices_paired=$(get_paired_devices)
+            echo "$devices_paired" | while read -r line; do
+                device_info=$(get_device_info "$line")
+                device_alias=$(get_device_alias "$device_info")
+                if [[ $2 == "--all" ]]; then
+                    echo "$device_alias"
+                else
+                    if is_device_connected "$device_info"; then
+                        echo "$device_alias"
+                    fi
+                fi
+            done
+        fi
+    ;;
+    --watch)
+        watch
+    ;;
+    *)
+        echo "usage: bluetooth [OPTIONS]
+
+OPTIONS
+   --status
+   --powered
+   --toggle
+   --devices [--all]
+   --watch [--alias]
+"
+    ;;
+esac;
+

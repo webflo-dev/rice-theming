@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
+get_load(){
+    grep -o "^[^ ]*" /proc/loadavg
+}
+
 case $1 in
-    value)
-        grep -o "^[^ ]*" /proc/loadavg
-    ;;
-    value_percentage)
-        value=$(grep -o "^[^ ]*" /proc/loadavg)
-        echo "$value%"
+    --value)
+        value=$(get_load)
+        [[ $2 == "--percentage" ]] && echo "$value%" || echo "$value"
     ;;
     *)
         echo "usage: cpu [OPTIONS]
 		
 OPTIONS
-   value
-   value_percentage
+   --value [--percentage]
 "
     ;;
 esac

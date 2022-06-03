@@ -1,59 +1,101 @@
 #!/usr/bin/env bash
 
-function get_volume(){
+get_volume(){
     pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
 }
 
-function is_mute(){
+volume_up(){
+    pactl set-sink-volume @DEFAULT_SINK@ +${1:-5%}
+}
+
+volume_down(){
+    pactl set-sink-volume @DEFAULT_SINK@ -${1:-5%}
+}
+
+toggle_mute(){
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+}
+
+toggle_mute_mic(){
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+}
+
+is_muted(){
     pactl get-sink-mute @DEFAULT_SINK@ | cut -d: -f2 | tr -d ' '
 }
 
-function is_mute_mic(){
+is_mic_muted(){
     pactl get-source-mute @DEFAULT_SOURCE@ | cut -d: -f2 | tr -d ' '
 }
 
+watch() {
+    local firstRun=0
+
+    # Listen for changes and immediately create new output for the bar.
+    # This is faster than having the script on an interval.
+    pactl subscribe 2>/dev/null | {
+        while true; do
+            {
+                # If this is the first time just continue and print the current
+                # state. Otherwise wait for events. This is to prevent the
+                # module being empty until an event occurs.
+                if [ $firstRun -eq 0 ]; then
+                    firstRun=1
+                else
+                    read -r event || break
+                    # Avoid double events
+                    if ! echo "$event" | grep -e "on card" -e "on sink" -e "on server"; then
+                        continue
+                    fi
+                fi
+            } &>/dev/null
+            output
+        done
+    }
+}
+
+output() {
+    # Showing the formatted message
+    if [ "$(is_mic_muted)" = "yes" ]; then
+        printf "%s\uf131%s " "%{T2}%{F#757575}" "%{F-}%{T-}"
+    else
+        printf "%s\uf130%s " "%{T2}" "%{T-}"
+    fi
+
+
+    if [ "$(is_muted)" = "yes" ]; then
+        printf "%s\uf2e2%s\n" "%{T2}%{F#757575}" "%{F-}%{T-}"
+    else
+        printf "%s\uf6a8 %s%s\n" "%{T2}" "%{T-}" "$(get_volume)%"
+    fi
+}
+
 case $1 in
-    value)
-        get_volume
+    --value)
+        volume=$(get_volume)
+        [[ $2 == "--percentage" ]] && echo "$volume%" || echo "$volume"
     ;;
-    value_percentage)
-        echo "$(get_volume)%"
+    --up)
+        volume_up
     ;;
-    up)
-        pactl set-sink-volume @DEFAULT_SINK@ +5%
+    --down)
+        volume_down
     ;;
-    down)
-        pactl set-sink-volume @DEFAULT_SINK@ -5%
+    --toggle)
+        [[ $2 == "--mic" ]] && { toggle_mute_mic; true; } || toggle_mute
     ;;
-    set)
-        pactl set-sink-volume @DEFAULT_SINK@ $2
-    ;;
-    mute)
-        pactl set-sink-mute @DEFAULT_SINK@ toggle
-        is_mute
-    ;;
-    is_mute)
-        is_mute
-    ;;
-    is_mute_mic)
-        is_mute_mic
-    ;;
-    mute_mic)
-        pactl set-source-mute @DEFAULT_SOURCE@ toggle
-        is_mute_mic
+    --watch)
+        watch
     ;;
 	*)
 		echo "usage: volume [OPTIONS]
 		
 OPTIONS
-    value
-    value_percentage
-    up
-    down
-    mute
-    mute_mic
-    is_mute
-    is_mute_mic
+    --value [--percentage]
+    --up
+    --down
+    --toggle [--mic]
+    --watch
 "
 	;;
 esac

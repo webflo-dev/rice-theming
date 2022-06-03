@@ -9,22 +9,18 @@ battery_status() {
 
 
 case $1 in
-    status)
+    --status)
         battery_status
     ;;
-    value)
-        battery_value
-    ;;
-    value_percentage)
-        echo "$(battery_value)%"
+    --value)
+        [[ $2 == "--percentage" ]] && echo "$(battery_value)%" || battery_value
     ;;
     *)
         echo "usage: battery [OPTIONS]
 		
 OPTIONS
-   status
-   value
-   value_percentage
+   --status
+   --value [--percentage]
 "
     ;;
 esac

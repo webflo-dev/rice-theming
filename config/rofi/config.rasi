@@ -1,7 +1,7 @@
 configuration {
 /*	modi: "combi,drun,run"; */
 /*	font: "RobotoMono Nerd Font 14"; */
-    font: "DejaVu Sans, DejaVuSansMono Nerd Font 14";
+    font: "DejaVuSansMono Nerd Font 14";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -145,6 +145,8 @@ configuration {
   }
 }
 
+// @theme "webflo.rasi"
+
 
 * {
     black0: #192e40;
@@ -161,18 +163,19 @@ configuration {
     grey1: #c3c0b8;
 
     background: #12212f;
-    alt-background: var(black0);
-    selected: var(yellow);
-    active: var(green);
-    foreground: var(white0);
+    alt-background: @black0;
+    selected: @yellow;
+    active: @green;
+    foreground: @white0;
     alt-foreground: #0b1726;
-    urgent: var(red);
+    urgent: @red;
 }
 
 window {
     border: 0px;
     padding: 8px;
     width: 600px;
+    // width: 30%;
 }
 
 mainbox {
@@ -181,14 +184,14 @@ mainbox {
 
 inputbar {
     padding: 6px;
-    background-color: var(alt-background);
-    text-color: var(foreground);
+    background-color: @alt-background;
+    text-color: @foreground;
     children: [ prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows ];
 }
 
 prompt {
     padding: 0px 4px 0px 2px;
-    text-color: var(foreground);
+    text-color: @foreground;
 }
 
 textbox-prompt-colon {
@@ -196,30 +199,30 @@ textbox-prompt-colon {
 }
 
 entry {
-    placeholder-color: var(grey0);
-    text-color: var(foreground);
+    placeholder-color: @grey0;
+    text-color: @foreground;
 }
 
 num-rows, num-filtered-rows, textbox-num-sep {
-    text-color: var(yellow);
+    text-color: @yellow;
 }
 
 message {
     margin: 4px 0px 0px 0px;
     padding: 4px;
     border: 1px 0px;
-    border-color: var(black0);
+    border-color: @black0;
 }
 
 listview {
     border: 4px 0px;
-    border-color: var(background);
+    border-color: @background;
     lines: 10;
 }
 
 scrollbar {
     padding: 0px 0px 0px 4px;
-    handle-color: var(foreground);
+    handle-color: @foreground;
     handle-width: 8px;
 }
 
@@ -228,56 +231,56 @@ element {
 }
 
 element normal.normal {
-	background-color: var(background);
-	text-color: var(foreground);
+	background-color: @background;
+	text-color: @foreground;
 }
 
 element normal.urgent {
-	background-color: var(background);
-	text-color: var(urgent);
+	background-color: @background;
+	text-color: @urgent;
 }
 
 element normal.active {
-	background-color: var(background);
-	text-color: var(active);
+	background-color: @background;
+	text-color: @active;
 }
 
 element selected.normal {
-	background-color: var(selected);
-	text-color: var(alt-foreground);
+	background-color: @selected;
+	text-color: @alt-foreground;
 }
 
 element selected.urgent {
-	background-color: var(urgent);
-	text-color: var(alt-foreground);
+	background-color: @urgent;
+	text-color: @alt-foreground;
 }
 
 element selected.active {
-	background-color: var(active);
-	text-color: var(alt-foreground);
+	background-color: @active;
+	text-color: @alt-foreground;
 }
 
 element alternate.normal {
-	background-color: var(background);
-	text-color: var(foreground);
+	background-color: @background;
+	text-color: @foreground;
 }
 
 element alternate.urgent {
-	background-color: var(background);
-	text-color: var(urgent);
+	background-color: @background;
+	text-color: @urgent;
 }
 
 element alternate.active {
-	background-color: var(background);
-	text-color: var(active);
+	background-color: @background;
+	text-color: @active;
 }
 
 button {
-    text-color: var(foreground);
+    text-color: @foreground;
     padding: 3px;
 }
 
 button selected {
-    background-color: var(blue);
-    text-color: var(alt-foreground);
+    background-color: @blue;
+    text-color: @alt-foreground;
 }
