@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 
+load(){
+    grep -o "^[^ ]*" /proc/loadavg
+}
+
 case $1 in
-    value)
-        grep -o "^[^ ]*" /proc/loadavg
+    --load)
+        value=$(load)
+        [[ $2 == "--percentage" ]] && echo "$value%" || echo "$value"
     ;;
-    value_percentage)
-        value=$(grep -o "^[^ ]*" /proc/loadavg)
-        echo "$value%"
+    --temp)
+        sensors coretemp-isa-0000 | grep Core | tr -s " " | cut -d " " -f 3 | tr "\n" " "
     ;;
     *)
         echo "usage: cpu [OPTIONS]
 		
 OPTIONS
-   value
-   value_percentage
+   --load [--percentage]
+   --temp
 "
     ;;
 esac

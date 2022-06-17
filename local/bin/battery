@@ -1,30 +1,41 @@
 #!/usr/bin/env bash
 
-battery_value() {
-	cat /sys/class/power_supply/BAT0/capacity
-}
-battery_status() {
+
+status() {
 	cat /sys/class/power_supply/BAT0/status
+}
+
+is_charging(){
+  cat /sys/class/power_supply/AC/online
+}
+
+charge_now(){
+  cat /sys/class/power_supply/BAT0/charge_now
+}
+
+charge_full() {
+    cat /sys/class/power_supply/BAT0/charge_full
+}
+
+value(){
+ 	cat /sys/class/power_supply/BAT0/capacity
+    # charge_now*100/charge_full
 }
 
 
 case $1 in
-    status)
-        battery_status
+    --status)
+        status
     ;;
-    value)
-        battery_value
-    ;;
-    value_percentage)
-        echo "$(battery_value)%"
+    --value)
+        [[ $2 == "--percentage" ]] && echo "$(value)%" || value
     ;;
     *)
         echo "usage: battery [OPTIONS]
 		
 OPTIONS
-   status
-   value
-   value_percentage
+   --status
+   --value [--percentage]
 "
     ;;
 esac

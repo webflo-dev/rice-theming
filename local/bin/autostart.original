@@ -1,0 +1,57 @@
+#!/bin/sh
+
+## set brightness cuz this laptop is shit
+# xrandr --output "$(xrandr | grep " connected" | awk '{print $1}')" --brightness 1.1
+
+## stupid me broke my display
+# xrandr --output eDP1 --off --output HDMI1 --mode 1024x768
+# xrandr --output HDMI1 --off --output eDP1 --mode 1366x768
+pkill x0vncserver
+xrandr --output HDMI1 --off --output eDP1 --mode 1280x720
+x0vncserver -passwordfile ~/.vnc/passwd -display "$DISPLAY" >/dev/null 2>&1 &
+xbacklight -set 0
+
+## load X11 defaults
+xrdb -load ~/.config/X11/Xresources
+
+## gestures
+/home/ervin/.local/bin/libinput-gestures-start &
+
+## "daemons"
+xmousepasteblock &
+
+alttab -w 1 -d 2 -i 60x40 -t 60x40 -bg "#1e1d2d" -fg "#d9e0ee" -frame "#ddb6f2" -bw 5 -inact "#1e1d2d" -bc "#000000" -bw 0 &
+gnome-keyring-daemon --start &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/home/ervin/.local/bin/spotify-notification &
+/home/ervin/.local/bin/battery-notification &
+/home/ervin/.local/bin/autohide.py &
+# nwggrid-server &
+# /usr/lib/kdeconnectd &
+
+## wallpaper
+# pkill -KILL wallpaper
+# pkill -KILL sleep
+# /home/ervin/.local/bin/wallpaper &
+nitrogen --set-zoom-fill /home/ervin/www/src/mine/dots/wallpaper.png
+
+## lockscreen
+xset s 600 &
+xss-lock -- betterlockscreen -l dimblur &
+
+## various apps
+# /home/ervin/.config/conky/start_qtile.sh -n &
+yes | /home/ervin/.local/bin/rmshit.py &
+firefox &
+alacritty &
+# /home/ervin/.local/bin/start-spotify &
+
+## systray
+nm-applet &
+pa-applet --disable-key-grabbing --disable-notifications &
+# kdeconnect-indicator &
+blueman-applet &
+flameshot &
+
+## compositor
+picom --inactive-opacity-override &

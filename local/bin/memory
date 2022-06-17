@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+values=$(free -h | grep Mem | tr -s " ")
+
+used(){
+    echo "$values" | cut -d" " -f3 | grep -e '[GM]i'
+}
+free(){
+    echo "$values" | cut -d" " -f4 | grep -e '[GM]i'
+}
+total(){
+    echo "$values" | cut -d" " -f2 | grep -e '[GM]i'
+}
+
+case $1 in
+    --used)
+        used
+    ;;
+    --free)
+        free
+    ;;
+    --total)
+        total
+    ;;
+	*)
+		echo "usage: ram [OPTIONS]
+		
+OPTIONS
+    --used
+    --free
+    --total
+"
+	;;
+esac

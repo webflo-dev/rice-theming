@@ -1,0 +1,30 @@
+#!/bin/sh
+
+## load X11 defaults
+# xrdb -load ~/.config/X11/Xresources
+
+## gestures
+# /home/ervin/.local/bin/libinput-gestures-start &
+
+## "daemons"
+gnome-keyring-daemon --start &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+
+
+## wallpaper
+# nitrogen --set-zoom-fill /home/ervin/www/src/mine/dots/wallpaper.png
+
+## lockscreen
+xset s 600 &
+xss-lock --transfer-sleep-lock -- betterlockscreen -l dimblur &
+
+## various apps
+# /home/ervin/.local/bin/rmshit.py &
+
+## systray
+# blueman-applet &
+# flameshot &
+
+## compositor
+picom --inactive-opacity-override &

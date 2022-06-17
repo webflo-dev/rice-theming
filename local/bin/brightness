@@ -5,26 +5,23 @@ function get_brightness(){
 }
 
 case $1 in
-    up)
+    --up)
         light -A 5%
     ;;
-    down)
+    --down)
         light -U 5%
     ;;
-    value)
-        get_brightness
-    ;;
-    value_percentage)
-        get_brightness | awk '{printf "%s%\n",($0-int($0)<0.499)?int($0):int($0)+1}'
+    --value)
+        value=$(get_brightness | awk '{printf "%s\n",($0-int($0)<0.499)?int($0):int($0)+1}')
+        [[ $2 == "--percentage" ]] && echo "$value%" || echo "$value"
     ;;
     *)
         echo "usage: brightness [OPTIONS]
 		
 OPTIONS
-   up
-   down
-   value
-   value_percentage
+   --up
+   --down
+   --value [--percentage]
 "
     ;;
 esac
